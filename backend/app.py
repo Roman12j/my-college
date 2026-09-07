@@ -11,11 +11,11 @@ from pydantic import BaseModel
 from fastapi.staticfiles import StaticFiles
 
 
-BASE_DIR = Path(__file__).resolve().parents[1]
+BASE_DIR = Path(__file__).resolve().parent
 FRONTEND_DIR = BASE_DIR / "frontend"
 DIST_DIR = FRONTEND_DIR / "dist"
 STATIC_DIR = DIST_DIR if DIST_DIR.exists() else FRONTEND_DIR
-COLLEGE_DATA_FILE = BASE_DIR / "backend" / "college_data.json"
+COLLEGE_DATA_FILE = BASE_DIR / "college_data.json"
 ADMIN_USERNAME = os.getenv("COLLEGE_ADMIN_USERNAME", "principal")
 ADMIN_PASSWORD = os.getenv("COLLEGE_ADMIN_PASSWORD", "rampuria-principal")
 ACTIVE_TOKENS: set[str] = set()
