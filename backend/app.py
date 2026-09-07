@@ -386,7 +386,7 @@ def arts_syllabus():
 def index():
     return FileResponse(STATIC_DIR / "index.html")
 
-app.mount("/assets", StaticFiles(directory=STATIC_DIR / "assets"), name="assets")
+#app.mount("/assets", StaticFiles(directory=STATIC_DIR / "assets"), name="assets")
 
 
 @app.get("/{full_path:path}")
