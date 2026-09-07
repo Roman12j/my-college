@@ -1,5 +1,6 @@
 {
   "scripts": {
+    "postinstall": "chmod +x node_modules/.bin/*",
     "dev": "vite --host 127.0.0.1 --port 5173",
     "build": "tsc -b && vite build",
     "preview": "vite preview --host 127.0.0.1 --port 4173"
