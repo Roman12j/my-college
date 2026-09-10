@@ -1,12 +1,10 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useState } from "react";
 import type { College } from "../types";
 
 export default function HomePage({ college }: { college: College }) {
-  const [openCourse, setOpenCourse] = useState<number | null>(null);
   const [selectedSyllabus, setSelectedSyllabus] = useState(0);
   const [selectedFees, setSelectedFees] = useState(0);
-  const navigate = useNavigate();
 
   return (
     <main id="top">
@@ -61,47 +59,15 @@ export default function HomePage({ college }: { college: College }) {
           <h2>Programs shaped for professional growth.</h2>
         </div>
         <div className="course-grid equal-course-grid">
-          {college.courses.map((course, index) => (
-            <article className={`course-card ${openCourse === index ? "expanded" : ""}`} data-reveal key={course.title}>
+          {college.courses.map((course) => (
+            <Link className="course-card" data-reveal key={course.title} to={course.route} aria-label={`Open ${course.title} details`}>
               <div className="course-topline">
                 <span>{course.type}</span>
-                <button
-                  className="course-arrow"
-                  type="button"
-                  aria-label={`Open ${course.title} details`}
-                  onClick={() => navigate(course.route)}
-                >
-                  &rarr;
-                </button>
               </div>
               <h3>{course.title}</h3>
               <p className="course-description">{course.description}</p>
               <blockquote>{course.quote}</blockquote>
-              {course.route === "/ba" && (
-                <div className="course-actions" aria-label="Arts course options">
-                  <button type="button" onClick={() => navigate("/ba")}>Explore BA</button>
-                  <button type="button" onClick={() => navigate("/ma")}>Explore MA</button>
-                </div>
-              )}
-              {openCourse === index && (
-                <div className="course-details">
-                  <dl>
-                    <div>
-                      <dt>Duration</dt>
-                      <dd>{course.duration}</dd>
-                    </div>
-                    <div>
-                      <dt>Fees</dt>
-                      <dd>{course.fees}</dd>
-                    </div>
-                    <div>
-                      <dt>Focus</dt>
-                      <dd>{course.focus}</dd>
-                    </div>
-                  </dl>
-                </div>
-              )}
-            </article>
+            </Link>
           ))}
         </div>
       </section>
@@ -181,9 +147,6 @@ export default function HomePage({ college }: { college: College }) {
                 <h3>{item.title}</h3>
                 <p>{item.description}</p>
               </div>
-              <span className="campus-arrow" aria-hidden="true">
-                &rarr;
-              </span>
             </Link>
           ))}
         </div>

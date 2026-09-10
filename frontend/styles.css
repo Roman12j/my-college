@@ -73,12 +73,6 @@ body[data-theme="dark"] .split h3 {
   color: var(--ink);
 }
 
-body[data-theme="dark"] .course-arrow {
-  color: var(--ink);
-  background: #151515;
-  border-color: var(--ink);
-}
-
 body[data-theme="dark"] .course-card blockquote {
   color: #f0b8b8;
 }
@@ -155,11 +149,6 @@ body[data-theme="light"] .campus-detail-content p {
   border-color: rgba(17, 17, 17, 0.16);
 }
 
-body[data-theme="light"] .campus-arrow {
-  color: #111111;
-  border-color: rgba(17, 17, 17, 0.46);
-}
-
 body[data-theme="light"] .spa-tabs button {
   color: #111111;
   background: rgba(255, 255, 255, 0.82);
@@ -167,7 +156,7 @@ body[data-theme="light"] .spa-tabs button {
 }
 
 body[data-theme="light"] .spa-tabs button:hover,
-body[data-theme="light"] .spa-tabs button.active {
+body[data-theme="light"] .spa-tabs button:focus-visible {
   color: #ffffff;
   background: var(--crimson);
 }
@@ -825,16 +814,22 @@ p {
 }
 
 .course-card:hover,
-.course-card.expanded {
+.course-card:focus-visible {
   border-color: var(--crimson);
   box-shadow: 0 22px 44px rgba(17, 17, 17, 0.2);
   transform: translateY(-10px) scale(1.012);
 }
 
 .course-card:hover::before,
-.course-card.expanded::before { opacity: 1; }
+.course-card:focus-visible::before { opacity: 1; }
 
 .course-card > * { position: relative; z-index: 1; }
+
+.course-card {
+  color: inherit;
+  cursor: pointer;
+  text-decoration: none;
+}
 
 .course-topline {
   display: flex;
@@ -850,36 +845,6 @@ p {
   font-size: 13px;
   font-weight: 900;
   text-transform: uppercase;
-}
-
-.course-arrow {
-  display: inline-grid;
-  width: 44px;
-  height: 44px;
-  place-items: center;
-  flex: 0 0 auto;
-  border: 2px solid var(--ink);
-  border-radius: 50%;
-  color: var(--ink);
-  background: var(--white);
-  cursor: pointer;
-  font-size: 24px;
-  font-weight: 900;
-  line-height: 1;
-  transition: background 180ms ease, border-color 180ms ease, color 180ms ease, transform 180ms ease;
-}
-
-.course-arrow:hover,
-.course-arrow[aria-expanded="true"] {
-  color: var(--white);
-  background: var(--crimson);
-  border-color: var(--crimson);
-}
-
-.course-arrow:hover { transform: rotate(-35deg) scale(1.06); }
-
-.course-arrow[aria-expanded="true"] {
-  transform: rotate(90deg);
 }
 
 .course-card h3 {
@@ -1132,7 +1097,7 @@ body[data-theme="dark"] .course-page-grid article {
 }
 
 .spa-tabs button:hover,
-.spa-tabs button.active {
+.spa-tabs button:focus-visible {
   color: #ffffff;
   background: var(--crimson);
   border-color: var(--gold);
@@ -1251,7 +1216,7 @@ body[data-theme="dark"] .course-page-grid article {
 
 .campus-card {
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: auto 1fr;
   align-items: center;
   gap: 22px;
   min-height: 160px;
@@ -1297,13 +1262,6 @@ body[data-theme="dark"] .course-page-grid article {
 .campus-card:hover::before { opacity: 1; animation: border-flow 2.4s linear infinite; }
 body[data-theme="light"] .campus-card::after { background: rgba(255, 255, 255, 0.9); }
 
-.campus-card:hover .campus-arrow {
-  color: #111111;
-  background: var(--gold);
-  border-color: var(--gold);
-  transform: rotate(-35deg);
-}
-
 .campus-number {
   text-decoration: none;
   color: var(--gold);
@@ -1317,19 +1275,6 @@ body[data-theme="light"] .campus-card::after { background: rgba(255, 255, 255, 0
 .campus-number:focus {
   color: var(--white);
   transform: scale(1.08);
-}
-
-.campus-arrow {
-  display: grid;
-  width: 44px;
-  height: 44px;
-  place-items: center;
-  border: 2px solid rgba(255, 255, 255, 0.72);
-  border-radius: 50%;
-  color: var(--white);
-  font-size: 24px;
-  font-weight: 900;
-  text-decoration: none;
 }
 
 .campus-card h3 {
